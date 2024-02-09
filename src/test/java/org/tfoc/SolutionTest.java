@@ -12,7 +12,7 @@ class SolutionTest {
     @Test
     void testSolutionExample1() {
         Solution s = new Solution();
-        boolean result = s.isValid("()");
+        boolean result = s.isValidV2("()");
 
         assertTrue(result);
     }
@@ -20,7 +20,7 @@ class SolutionTest {
     @Test
     void testSolutionExample2() {
         Solution s = new Solution();
-        boolean result = s.isValid("()[]{}");
+        boolean result = s.isValidV2("()[]{}");
 
         assertTrue(result);
     }
@@ -28,7 +28,7 @@ class SolutionTest {
     @Test
     void testSolutionExample3() {
         Solution s = new Solution();
-        boolean result = s.isValid("(]");
+        boolean result = s.isValidV2("(]");
 
         assertFalse(result);
     }
@@ -36,7 +36,7 @@ class SolutionTest {
     @Test
     void testSolutionNonEvenSizeString() {
         Solution s = new Solution();
-        boolean result = s.isValid("(])");
+        boolean result = s.isValidV2("(])");
 
         assertFalse(result);
     }
@@ -44,7 +44,39 @@ class SolutionTest {
     @Test
     void testSolutionFirstPairCorrectSecondIncorrect() {
         Solution s = new Solution();
-        boolean result = s.isValid("(){]");
+        boolean result = s.isValidV2("(){]");
+
+        assertFalse(result);
+    }
+
+    @Test
+    void testSolutionComplexCorrect1() {
+        Solution s = new Solution();
+        boolean result = s.isValidV2("()(())");
+
+        assertTrue(result);
+    }
+
+    @Test
+    void testSolutionComplexCorrect2() {
+        Solution s = new Solution();
+        boolean result = s.isValidV2("()(([]))");
+
+        assertTrue(result);
+    }
+
+    @Test
+    void testSolutionComplexIncorrect1() {
+        Solution s = new Solution();
+        boolean result = s.isValidV2("()(([))]");
+
+        assertFalse(result);
+    }
+
+    @Test
+    void testSolutionComplexIncorrect2() {
+        Solution s = new Solution();
+        boolean result = s.isValidV2("()(([]]])]");
 
         assertFalse(result);
     }
