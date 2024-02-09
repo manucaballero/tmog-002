@@ -5,7 +5,24 @@ package org.tfoc;
  */
 public class Solution {
 
-    public boolean isValidV2(String s) {
+    public static boolean isValidV2(String s) {
+
+        StringBuilder currentString = new StringBuilder();
+        for(int i = 0; i < s.length(); i++){
+            char currentChar = s.charAt(i);
+            if(isOpenCharacter(currentChar)){
+
+                currentString.append(currentChar);
+            }else if(isCorrectClosing(currentString.charAt(currentString.length() - 1), currentChar)){
+                currentString.deleteCharAt(currentString.length() - 1);
+            }else{
+                return false;
+            }
+        }
+
+        return true;
+    }
+    public static boolean isValidV1(String s) {
 
         char[] characters = s.toCharArray();
 
@@ -52,44 +69,44 @@ public class Solution {
         return isValid;
     }
 
-    private boolean isOpenCharacter(char character){
+    private static boolean isOpenCharacter(char character){
 
         return isOpenParentheses(character) || isOpenBracket(character) || isOpenCurlyBrace(character);
     }
 
-    private boolean isCorrectClosing(char first, char second){
+    private static boolean isCorrectClosing(char first, char second){
 
         return (isOpenParentheses(first) && isClosingParentheses(second))
                 || (isOpenBracket(first) && isClosingBracket(second))
                 || (isOpenCurlyBrace(first) && isClosingCurlyBrace(second));
     }
 
-    private boolean isOpenParentheses(char element){
+    private static boolean isOpenParentheses(char element){
 
         return element == 40;
     }
 
-    private boolean isClosingParentheses(char element){
+    private static boolean isClosingParentheses(char element){
 
         return element == 41;
     }
 
-    private boolean isOpenBracket(char element){
+    private static boolean isOpenBracket(char element){
 
         return element == 91;
     }
 
-    private boolean isClosingBracket(char element){
+    private static boolean isClosingBracket(char element){
 
         return element == 93;
     }
 
-    private boolean isOpenCurlyBrace(char element){
+    private static boolean isOpenCurlyBrace(char element){
 
         return element == 123;
     }
 
-    private boolean isClosingCurlyBrace(char element){
+    private static boolean isClosingCurlyBrace(char element){
 
         return element == 125;
     }
